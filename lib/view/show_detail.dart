@@ -63,11 +63,79 @@ class _ShowDetailState extends State<ShowDetail> {
                 ),
                 columnDetail("Height", snapshot.data.height.toString()),
                 columnDetail("Weight", snapshot.data.weight.toString()),
+                columnDetail2("Ability", snapshot.data.types),
               ],
             );
           },
         ),
       ),
+    );
+  }
+
+  Column columnDetail2(String label, List<dynamic> snapshotData) {
+    //snapshot.data.abilities.map<Widget>((ability)
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              children: [
+                SizedBox(height: 10),
+                Container(
+                  height: 40,
+                  width: 80,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18),
+                    color: Colors.white,
+                  ),
+                  child: Center(
+                    child: Text(
+                      label, //label
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+              ],
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children:
+              snapshotData.map<Widget>((type) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 30,
+                        width: 80,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white,
+                        ),
+                        child: Center(
+                          child: Text(
+                            type.type.name,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+        ),
+      ],
     );
   }
 
